@@ -57,68 +57,100 @@ class _LessonDetailState extends State<LessonDetail> {
                       horizontal: 25.w,
                     ),
                     sliver: SliverToBoxAdapter(
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Container(
-                              width: 325.w,
-                              height: 200.h,
-                              decoration: BoxDecoration(
-                                image: const DecorationImage(
-                                  fit: BoxFit.fitWidth,
-                                  image: AssetImage(
-                                    AssetsHelper.IC_VIDEO,
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  20.h,
+                      child: Column(
+                        children: [
+                          // Video Preview
+                          Container(
+                            width: 325.w,
+                            height: 200.h,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                fit: BoxFit.fitWidth,
+                                image: AssetImage(
+                                  AssetsHelper.IC_VIDEO,
                                 ),
                               ),
-                              child: FutureBuilder(
-                                future: state.initVideoPlayerFuture,
-                                builder: (context, snapshot) {
-                                  // Check if the connection is made to the certain video on the server
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.done) {
-                                    return _lessonController
-                                                .videoPlayerController ==
-                                            null
-                                        ? Container()
-                                        : AspectRatio(
-                                            aspectRatio: _lessonController
-                                                .videoPlayerController!
-                                                .value
-                                                .aspectRatio,
-                                            child: Stack(
-                                              alignment: Alignment.bottomCenter,
-                                              children: <Widget>[
-                                                VideoPlayer(
-                                                  _lessonController
-                                                      .videoPlayerController!,
+                              borderRadius: BorderRadius.circular(
+                                20.h,
+                              ),
+                            ),
+                            child: FutureBuilder(
+                              future: state.initVideoPlayerFuture,
+                              builder: (context, snapshot) {
+                                // Check if the connection is made to the certain video on the server
+                                if (snapshot.connectionState ==
+                                    ConnectionState.done) {
+                                  return _lessonController
+                                              .videoPlayerController ==
+                                          null
+                                      ? Container()
+                                      : AspectRatio(
+                                          aspectRatio: _lessonController
+                                              .videoPlayerController!
+                                              .value
+                                              .aspectRatio,
+                                          child: Stack(
+                                            alignment: Alignment.bottomCenter,
+                                            children: <Widget>[
+                                              VideoPlayer(
+                                                _lessonController
+                                                    .videoPlayerController!,
+                                              ),
+                                              VideoProgressIndicator(
+                                                _lessonController
+                                                    .videoPlayerController!,
+                                                allowScrubbing: true,
+                                                colors:
+                                                    const VideoProgressColors(
+                                                  playedColor:
+                                                      AppColors.primaryElement,
                                                 ),
-                                                VideoProgressIndicator(
-                                                  _lessonController
-                                                      .videoPlayerController!,
-                                                  allowScrubbing: true,
-                                                  colors:
-                                                      const VideoProgressColors(
-                                                    playedColor: AppColors
-                                                        .primaryElement,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                  } else {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                },
-                              ),
-                            )
-                          ],
-                        ),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                } else {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                          Container(
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    // if it's already playing, pause it
+                                    if (state.isPlay) {
+                                      _lessonController.videoPlayerController!
+                                          .pause();
+                                      context.read<LessonBlocs>().add(
+                                          const TriggerPlay(isPlay: false));
+                                    } else {
+                                      // if it's not playing, play it
+                                      _lessonController.videoPlayerController!
+                                          .play();
+                                      context
+                                          .read<LessonBlocs>()
+                                          .add(const TriggerPlay(isPlay: true));
+                                    }
+                                  },
+                                  child: state.isPlay
+                                      ? const Icon(
+                                          Icons.pause,
+                                          size: 24,
+                                        )
+                                      : const Icon(
+                                          Icons.play_arrow,
+                                          size: 24,
+                                        ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -130,5 +162,7 @@ class _LessonDetailState extends State<LessonDetail> {
       },
     );
   }
+
+
 }
-//Todo: edit to backend to put lessons inside lesson (to because the ui have lessons inside a lesson)
+//todo: study slivers and how it works

@@ -5,8 +5,7 @@ import 'package:udemy_app/pages/course/course_detail/bloc/course_detail_states.d
 
 Widget courseSummaryView(BuildContext context, CourseDetailStates state) {
   var imagesInfo = <String, String>{
-    "${state.courseItem!.lessons![0].videoLength ?? "0"} Hours Video":
-        "video_detail.png",
+    "${state.courseItem!.videosLength ?? "0"} Hours Video": "video_detail.png",
     "Total ${state.courseItem!.lessonNum ?? "0"} Lessons": "file_detail.png",
     "76 Downloadable Resources": "download_detail.png",
   };

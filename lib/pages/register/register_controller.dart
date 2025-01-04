@@ -47,8 +47,7 @@ class RegisterController {
       if (credential.user != null) {
         await credential.user!.sendEmailVerification();
         await credential.user!.updateDisplayName(userName);
-        String photoUrl =
-            "${AppConstants.SERVER_API_URL}/media/profile_pics/default.png";
+        String photoUrl = "${AppConstants.SERVER_API_URL}/media/default.png";
         toastInfo(msg: 'Please verify your email');
         await credential.user!.updatePhotoURL(photoUrl);
         RegisterRequestEntity registerRequestEntity = RegisterRequestEntity(

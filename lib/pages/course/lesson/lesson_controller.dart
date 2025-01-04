@@ -48,4 +48,27 @@ class LessonController {
       debugPrint('Failed to get lesson detail');
     }
   }
+
+
+  // to check if the video is playing or not and to play the video if it is not playing (from beginning)
+  // void playVido(Uri url) {
+  //   if (videoPlayerController != null) {
+  //     videoPlayerController!.pause();
+  //     videoPlayerController!.dispose();
+  //   }
+  //   videoPlayerController =
+  //       VideoPlayerController.networkUrl(url);
+  //   context.read<LessonBlocs>().add(const TriggerPlay(isPlay: false));
+  //   context
+  //       .read<LessonBlocs>()
+  //       .add(const TriggerUrlItem(initVideoPlayerFuture: null));
+  //   var initPlayer =
+  //       videoPlayerController!.initialize().then((value) {
+  //     videoPlayerController!.seekTo(Duration.zero);
+  //   });
+  //   context
+  //       .read<LessonBlocs>()
+  //       .add(TriggerUrlItem(initVideoPlayerFuture: initPlayer));
+  //   context.read<LessonBlocs>().add(const TriggerPlay(isPlay: true));
+  // }
 }

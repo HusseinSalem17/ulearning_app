@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:udemy_app/common/routes/names.dart';
 import 'package:udemy_app/common/values/colors.dart';
 import 'package:udemy_app/constants.dart';
-import 'package:udemy_app/pages/course/course_detail/bloc/course_detail_states.dart';
+import 'package:udemy_app/pages/course/models/course_entity/course_item.dart';
 import 'package:udemy_app/pages/course/widgets/List_Text_item_widget.dart';
 
-Widget courseLessonList(CourseDetailStates state) {
+Widget courseLessonList(CourseItem state) {
   return SingleChildScrollView(
     child: ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      itemCount: state.lessonItem!.length,
+      itemCount: state.lessons!.length,
       itemBuilder: (context, index) {
         return Container(
           margin: EdgeInsets.only(
@@ -40,7 +40,7 @@ Widget courseLessonList(CourseDetailStates state) {
               Navigator.of(context).pushNamed(
                 AppRoutes.LESSON_DETAIL,
                 arguments: {
-                  'id': state.lessonItem![index].id,
+                  'id': state.lessons![index].id,
                 },
               );
             },
@@ -57,10 +57,10 @@ Widget courseLessonList(CourseDetailStates state) {
                         borderRadius: BorderRadius.circular(15.r),
                         image: DecorationImage(
                           fit: BoxFit.fitHeight,
-                          image: state.lessonItem![index].thumbnail == null
+                          image: state.lessons![index].thumbnail == null
                               ? const AssetImage(AssetsHelper.IC_IMAGE_1)
                               : NetworkImage(
-                                  state.lessonItem![index].thumbnail!,
+                                  state.lessons![index].thumbnail!,
                                 ) as ImageProvider<Object>,
                         ),
                       ),
@@ -71,11 +71,11 @@ Widget courseLessonList(CourseDetailStates state) {
                       children: [
                         // List Item Title
                         listContainer(
-                          name: state.lessonItem![index].title!,
+                          name: state.lessons![index].title!,
                         ),
                         // List Item Description
                         listContainer(
-                          name: state.lessonItem![index].description!,
+                          name: state.lessons![index].description ?? '',
                           fontSize: 10,
                           color: AppColors.primaryThirdElementText,
                           fontWeight: FontWeight.normal,

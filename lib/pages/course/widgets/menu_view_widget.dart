@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:udemy_app/common/values/colors.dart';
 import 'package:udemy_app/common/widgets/reusable_text.dart';
 import 'package:udemy_app/constants.dart';
+import 'package:udemy_app/pages/course/models/course_entity/course_item.dart';
 
-Widget menuView() {
+Widget menuView(CourseItem courseItem) {
   return SizedBox(
     width: 325.w,
     child: Row(
@@ -33,8 +34,8 @@ Widget menuView() {
             ),
           ),
         ),
-        _iconAndNum(AssetsHelper.IC_PEOPLE, 0),
-        _iconAndNum(AssetsHelper.IC_STAR, 0),
+        _iconAndNum(AssetsHelper.IC_PEOPLE, courseItem.follow ?? 0),
+        _iconAndNum(AssetsHelper.IC_STAR, courseItem.score?.toInt() ?? 0),
       ],
     ),
   );

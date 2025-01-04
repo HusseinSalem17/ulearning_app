@@ -27,12 +27,11 @@ class HomeController {
 
   Future<void> init() async {
     print('init HomeController');
-
     // make sure that user is logged in and then make an api call
     if (Global.storageService.getUserToken().isNotEmpty) {
       context.read<HomePageBlocs>().add(HomePageLoading());
       var result = await CourseAPI.getCourses();
-      debugPrint('the result is: ${result.data![0].name}');
+      // debugPrint('the result is: ${result.data![0].name}');
       // context.mounted is used to check if the widget is still mounted (not disposed)
       if (result.statusCode == 200) {
         if (context.mounted) {

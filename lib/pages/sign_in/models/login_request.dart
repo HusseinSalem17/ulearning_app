@@ -12,7 +12,10 @@ class UserLoginResponseEntity {
     this.user,
   });
 
-  factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) {
+  factory UserLoginResponseEntity.fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return UserLoginResponseEntity();
+    }
     print('json: $json');
     return UserLoginResponseEntity(
       access_token: json["access_token"],
@@ -21,7 +24,7 @@ class UserLoginResponseEntity {
     );
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic>? toJson() => {
         "access_token": access_token,
         "refresh_token": refresh_token,
         "user": user?.toJson(),

@@ -7,7 +7,6 @@ import 'package:udemy_app/pages/course/course_detail/bloc/course_detail_states.d
 import 'package:udemy_app/pages/course/course_detail/course_detail_controller.dart';
 import 'package:udemy_app/common/widgets/build_app_bar_reusable.dart';
 import 'package:udemy_app/pages/course/widgets/build_list_view_widget.dart';
-import 'package:udemy_app/pages/course/widgets/course_summary.dart';
 import 'package:udemy_app/pages/course/widgets/descriptionText.dart';
 import 'package:udemy_app/pages/course/widgets/go_buy_button_widet.dart';
 import 'package:udemy_app/pages/course/widgets/menu_view_widget.dart';
@@ -37,6 +36,7 @@ class _CourseDetailState extends State<CourseDetail> {
     _courseDetailController.init();
   }
 
+//TODO: check of description (must have a value) also edit data (remove request of lessons and just leave lesson detail)
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CourseDetailBloc, CourseDetailStates>(
@@ -54,7 +54,8 @@ class _CourseDetailState extends State<CourseDetail> {
                 child: SafeArea(
                   child: Scaffold(
                     backgroundColor: Colors.white,
-                    appBar: buildAppBarReusable('Course Detail'),
+                    appBar:
+                        buildAppBarReusable(state.courseItem!.name.toString()),
                     body: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -75,7 +76,7 @@ class _CourseDetailState extends State<CourseDetail> {
                                   height: 15.h,
                                 ),
                                 // Three buttons for menus
-                                menuView(),
+                                menuView(state.courseItem!),
                                 SizedBox(
                                   height: 15.h,
                                 ),
@@ -102,21 +103,23 @@ class _CourseDetailState extends State<CourseDetail> {
                                 SizedBox(
                                   height: 20.h,
                                 ),
-                                // Course Summary Title
-                                courseSummaryTitle(
-                                    state.courseItem!.name.toString()),
                                 // Course Summary List
                                 courseSummaryView(context, state),
                                 SizedBox(
                                   height: 20.h,
                                 ),
                                 // Lesson List Title
-                                reusableText('Lesson List'),
+                                reusableText('Lessons'),
                                 SizedBox(
                                   height: 20.h,
                                 ),
                                 // Course Lesson List
-                                courseLessonList(state),
+                                state.courseItem!.lessons != null &&
+                                        state.courseItem!.lessons!.isNotEmpty
+                                    ? courseLessonList(state.courseItem!)
+                                    : SizedBox(
+                                        height: 20.h,
+                                      ),
                               ],
                             ),
                           ),

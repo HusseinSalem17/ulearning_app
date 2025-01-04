@@ -15,6 +15,7 @@ class CourseItem {
   int? lessonNum;
   int? follow;
   double? score;
+  double? videosLength;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -28,6 +29,7 @@ class CourseItem {
     this.description,
     this.typeId,
     this.price,
+    this.videosLength,
     this.lessonNum,
     this.follow,
     this.score,
@@ -48,6 +50,7 @@ class CourseItem {
             : Teacher.fromJson(json['teacher'] as Map<String, dynamic>),
         name: json['name'] as String?,
         thumbnail: json['thumbnail'] as String?,
+        videosLength: (json['videos_length'] as num?)?.toDouble(),
         description: json['description'] as String?,
         typeId: json['type_id'] as int?,
         price: (json['price'] as num?)?.toDouble(),
@@ -69,6 +72,7 @@ class CourseItem {
         'teacher': teacher?.toJson(),
         'name': name,
         'thumbnail': thumbnail,
+        'videos_length': videosLength,
         'description': description,
         'type_id': typeId,
         'price': price,

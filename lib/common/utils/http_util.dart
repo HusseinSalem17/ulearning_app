@@ -87,7 +87,7 @@ class HttpUtil {
         queryParameters: queryParameters,
         options: requestOptions,
       );
-      // debugPrint('response.data postMethod: ${response.data}');
+      debugPrint('response.data postMethod: ${response.data}');
       // debugPrint('reponse.data["url"]: ${response.data["data"]["url"]}');
       return Response<T>(
         data: fromJson(response.data),

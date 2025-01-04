@@ -28,7 +28,7 @@ class LessonAPI {
       {LessonRequestEntity? params}) async {
     try {
       final Response<LessonDetail> response = await HttpUtil().get(
-        '/api//lesson/${params!.id}/',
+        '/api/lesson/${params!.id}/',
         fromJson: (json) => LessonDetail.fromJson(json),
       );
       debugPrint('response.data courseDetail: ${response.data}');

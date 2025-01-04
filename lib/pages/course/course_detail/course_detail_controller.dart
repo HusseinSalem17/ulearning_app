@@ -20,7 +20,7 @@ class CourseDetailController {
   void init() async {
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     asyncLoadCourseData(args['id']);
-    asyncLoadLessonData(args['id']);
+    // asyncLoadLessonData(args['id']);
   }
 
   void asyncLoadCourseData(int? id) async {
@@ -84,6 +84,7 @@ class CourseDetailController {
       Response<CheckoutResponse> result =
           await CourseAPI.coursePay(params: courseRequestEntity);
       if (result.statusCode == 200 || result.statusCode == 201) {
+        EasyLoading.dismiss();
         // cleaner format of the url
         debugPrint('----my url hereee: ${result.data!.data!.url}');
         debugPrint('---- data hereee: ${result.data!.data!.toJson()}');
@@ -103,6 +104,7 @@ class CourseDetailController {
           toastInfo(msg: 'Payment successful');
         } else {
           debugPrint('Context is not mounted');
+          EasyLoading.dismiss();
         }
       } else if (result.statusCode == 400 &&
           result.data!.detail == "Order already paid") {
