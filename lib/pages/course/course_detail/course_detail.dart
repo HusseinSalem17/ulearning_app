@@ -6,13 +6,13 @@ import 'package:udemy_app/pages/course/course_detail/bloc/course_detail_blocs.da
 import 'package:udemy_app/pages/course/course_detail/bloc/course_detail_states.dart';
 import 'package:udemy_app/pages/course/course_detail/course_detail_controller.dart';
 import 'package:udemy_app/common/widgets/build_app_bar_reusable.dart';
-import 'package:udemy_app/pages/course/widgets/build_list_view_widget.dart';
-import 'package:udemy_app/pages/course/widgets/descriptionText.dart';
-import 'package:udemy_app/pages/course/widgets/go_buy_button_widet.dart';
-import 'package:udemy_app/pages/course/widgets/menu_view_widget.dart';
-import 'package:udemy_app/pages/course/widgets/thumbnail_widget.dart';
+import 'package:udemy_app/pages/course/course_detail/widgets/build_list_view_widget.dart';
+import 'package:udemy_app/pages/course/course_detail/widgets/descriptionText.dart';
+import 'package:udemy_app/pages/course/course_detail/widgets/go_buy_button_widet.dart';
+import 'package:udemy_app/pages/course/course_detail/widgets/menu_view_widget.dart';
+import 'package:udemy_app/pages/course/course_detail/widgets/thumbnail_widget.dart';
 
-import '../widgets/course_lesson_list_widget.dart';
+import 'widgets/course_lesson_list_widget.dart';
 
 class CourseDetail extends StatefulWidget {
   const CourseDetail({super.key});
@@ -36,7 +36,7 @@ class _CourseDetailState extends State<CourseDetail> {
     _courseDetailController.init();
   }
 
-//TODO: check of description (must have a value) also edit data (remove request of lessons and just leave lesson detail)
+// TODO: check of description (must have a value) also edit data (remove request of lessons and just leave lesson detail)
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CourseDetailBloc, CourseDetailStates>(

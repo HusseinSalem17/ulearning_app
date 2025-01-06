@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:udemy_app/common/routes/names.dart';
 import 'package:udemy_app/common/values/colors.dart';
-import 'package:udemy_app/common/values/constant.dart';
+import 'package:udemy_app/common/values/constant_api.dart';
 import 'package:udemy_app/global.dart';
 import 'package:udemy_app/pages/welcome/bloc/welcome_blocs.dart';
 import 'package:udemy_app/pages/welcome/bloc/welcome_events.dart';
 import 'package:udemy_app/pages/welcome/bloc/welcome_states.dart';
 
-import '../../constants.dart';
+import '../../common/values/assest_helper.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -147,10 +147,10 @@ class _WelcomeState extends State<Welcome> {
         GestureDetector(
           onTap: () {
             //within 0-2 index
-            print('hussein');
+            debugPrint('hussein');
             if (index < 3) {
               //animation
-              print('hussein');
+              debugPrint('hussein');
               pageController.animateToPage(
                 index,
                 duration: const Duration(milliseconds: 500),
@@ -162,7 +162,7 @@ class _WelcomeState extends State<Welcome> {
                 AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME,
                 true,
               );
-              print(
+              debugPrint(
                   'The value is ${Global.storageService.getDeviceFirstOpen()}');
               Navigator.of(context)
                   .pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);

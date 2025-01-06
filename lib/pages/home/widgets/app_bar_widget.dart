@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:udemy_app/common/values/constant.dart';
-import '../../../constants.dart';
+import 'package:udemy_app/common/values/constant_api.dart';
+import '../../../common/values/assest_helper.dart';
 
 AppBar buildAppBarHome(String avatar) {
   debugPrint('avatar: $avatar');
@@ -32,7 +32,7 @@ AppBar buildAppBarHome(String avatar) {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
                 image: DecorationImage(
-                  image: NetworkImage(AppConstants.SERVER_API_URL + avatar),
+                  image: NetworkImage(avatar),
                   fit: BoxFit.fill,
                 ),
               ),

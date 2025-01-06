@@ -51,4 +51,7 @@ class AssetsHelper {
   static const String IC_ARROW_RIGHT = 'assets/icons/arrow_right.png';
   static const String IC_VIDEO_1 = 'assets/icons/video(1).png';
   static const String IC_VIDEO = 'assets/icons/video.png';
+  static const String IC_REWIND_LEFT = 'assets/icons/rewind-left.png';
+  static const String IC_REWIND_RIGHT = 'assets/icons/rewind-right.png';
+  static const String IC_PLAY_CIRCLE = 'assets/icons/play-circle.png';
 }

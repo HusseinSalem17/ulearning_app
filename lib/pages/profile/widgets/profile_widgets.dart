@@ -4,7 +4,7 @@ import 'package:udemy_app/common/routes/names.dart';
 
 import '../../../common/values/colors.dart';
 import '../../../common/widgets/reusable_text.dart';
-import '../../../constants.dart';
+import '../../../common/values/assest_helper.dart';
 
 AppBar buildAppbar() {
   return AppBar(

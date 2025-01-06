@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:udemy_app/common/routes/names.dart';
 import 'package:udemy_app/common/values/colors.dart';
-import 'package:udemy_app/constants.dart';
+import 'package:udemy_app/common/values/assest_helper.dart';
 import 'package:udemy_app/pages/course/models/course_entity/course_item.dart';
-import 'package:udemy_app/pages/course/widgets/List_Text_item_widget.dart';
+import 'package:udemy_app/pages/course/course_detail/widgets/List_Text_item_widget.dart';
 
-Widget courseLessonList(CourseItem state) {
+Widget courseLessonList(CourseItem courseItem) {
   return SingleChildScrollView(
     child: ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      itemCount: state.lessons!.length,
+      itemCount: courseItem.lessons!.length,
       itemBuilder: (context, index) {
+        debugPrint(
+            'CourseLessonListWidget: my image path: ${courseItem.lessons![index].thumbnail}');
         return Container(
           margin: EdgeInsets.only(
             top: 10.h,
@@ -35,12 +37,15 @@ Widget courseLessonList(CourseItem state) {
               )
             ],
           ),
+          // TODO: add checkBuy in details of the course if the user has bought the course
           child: InkWell(
             onTap: () {
+              debugPrint(
+                  'lesson data course_lesson_list_widget: ${courseItem.lessons![index]}');
               Navigator.of(context).pushNamed(
                 AppRoutes.LESSON_DETAIL,
                 arguments: {
-                  'id': state.lessons![index].id,
+                  'id': courseItem.lessons![index].id,
                 },
               );
             },
@@ -57,10 +62,10 @@ Widget courseLessonList(CourseItem state) {
                         borderRadius: BorderRadius.circular(15.r),
                         image: DecorationImage(
                           fit: BoxFit.fitHeight,
-                          image: state.lessons![index].thumbnail == null
+                          image: courseItem.lessons![index].thumbnail == null
                               ? const AssetImage(AssetsHelper.IC_IMAGE_1)
                               : NetworkImage(
-                                  state.lessons![index].thumbnail!,
+                                  courseItem.lessons![index].thumbnail!,
                                 ) as ImageProvider<Object>,
                         ),
                       ),
@@ -71,11 +76,11 @@ Widget courseLessonList(CourseItem state) {
                       children: [
                         // List Item Title
                         listContainer(
-                          name: state.lessons![index].title!,
+                          name: courseItem.lessons![index].title!,
                         ),
                         // List Item Description
                         listContainer(
-                          name: state.lessons![index].description ?? '',
+                          name: courseItem.lessons![index].description ?? '',
                           fontSize: 10,
                           color: AppColors.primaryThirdElementText,
                           fontWeight: FontWeight.normal,

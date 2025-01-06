@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:udemy_app/common/apis/course_api.dart';
 import 'package:udemy_app/common/routes/names.dart';
-import 'package:udemy_app/common/values/constant.dart';
+import 'package:udemy_app/common/values/constant_api.dart';
 import 'package:udemy_app/global.dart';
 import 'package:udemy_app/pages/application/bloc/app_blocs.dart';
 import 'package:udemy_app/pages/application/bloc/app_events.dart';

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:udemy_app/common/apis/lesson_api.dart';
 import 'package:udemy_app/common/entities/entities.dart';
-import 'package:udemy_app/pages/course/lesson/bloc/lesson_blocs.dart';
-import 'package:udemy_app/pages/course/lesson/bloc/lesson_events.dart';
+import 'package:udemy_app/pages/lesson/bloc/lesson_blocs.dart';
+import 'package:udemy_app/pages/lesson/bloc/lesson_events.dart';
 import 'package:video_player/video_player.dart';
 
 class LessonController {
@@ -39,7 +39,9 @@ class LessonController {
           videoPlayerController = VideoPlayerController.networkUrl(url);
           // Here actually stream starts to happen
           var initPlayer = videoPlayerController!.initialize();
-          context.read<LessonBlocs>().add(TriggerUrlItem(initVideoPlayerFuture: initPlayer));
+          context
+              .read<LessonBlocs>()
+              .add(TriggerUrlItem(initVideoPlayerFuture: initPlayer));
         }
       } else {
         debugPrint('_______context is not mounted________');
@@ -49,26 +51,24 @@ class LessonController {
     }
   }
 
-
   // to check if the video is playing or not and to play the video if it is not playing (from beginning)
-  // void playVido(Uri url) {
-  //   if (videoPlayerController != null) {
-  //     videoPlayerController!.pause();
-  //     videoPlayerController!.dispose();
-  //   }
-  //   videoPlayerController =
-  //       VideoPlayerController.networkUrl(url);
-  //   context.read<LessonBlocs>().add(const TriggerPlay(isPlay: false));
-  //   context
-  //       .read<LessonBlocs>()
-  //       .add(const TriggerUrlItem(initVideoPlayerFuture: null));
-  //   var initPlayer =
-  //       videoPlayerController!.initialize().then((value) {
-  //     videoPlayerController!.seekTo(Duration.zero);
-  //   });
-  //   context
-  //       .read<LessonBlocs>()
-  //       .add(TriggerUrlItem(initVideoPlayerFuture: initPlayer));
-  //   context.read<LessonBlocs>().add(const TriggerPlay(isPlay: true));
-  // }
+  void playVido(Uri url) {
+    if (videoPlayerController != null) {
+      videoPlayerController!.pause();
+      videoPlayerController!.dispose();
+    }
+    videoPlayerController = VideoPlayerController.networkUrl(url);
+    context.read<LessonBlocs>().add(const TriggerPlay(isPlay: false));
+    context
+        .read<LessonBlocs>()
+        .add(const TriggerUrlItem(initVideoPlayerFuture: null));
+    var initPlayer = videoPlayerController!.initialize().then((value) {
+      videoPlayerController!.seekTo(Duration.zero);
+    });
+    context
+        .read<LessonBlocs>()
+        .add(TriggerUrlItem(initVideoPlayerFuture: initPlayer));
+    context.read<LessonBlocs>().add(const TriggerPlay(isPlay: true));
+    videoPlayerController!.play();
+  }
 }

@@ -1,4 +1,4 @@
-class LessonDetail {
+class LessonDetailModel {
   int? id;
   String? video;
   dynamic videoLength;
@@ -9,7 +9,7 @@ class LessonDetail {
   int? course;
   String? thumbnail;
 
-  LessonDetail({
+  LessonDetailModel({
     this.id,
     this.video,
     this.videoLength,
@@ -21,7 +21,8 @@ class LessonDetail {
     this.thumbnail,
   });
 
-  factory LessonDetail.fromJson(Map<String, dynamic> json) => LessonDetail(
+  factory LessonDetailModel.fromJson(Map<String, dynamic> json) =>
+      LessonDetailModel(
         id: json['id'] as int?,
         video: json['video'] as String?,
         videoLength: json['video_length'] as dynamic,

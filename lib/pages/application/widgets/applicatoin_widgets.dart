@@ -4,7 +4,7 @@ import 'package:udemy_app/pages/home/home_page.dart';
 import 'package:udemy_app/pages/profile/profile_page.dart';
 
 import '../../../common/values/colors.dart';
-import '../../../constants.dart';
+import '../../../common/values/assest_helper.dart';
 
 Widget buildPage(int index) {
   List<Widget> _widget = [

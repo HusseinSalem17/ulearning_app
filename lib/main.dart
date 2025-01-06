@@ -22,6 +22,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
+        // To adapt on keyboard show/hide
+        minTextAdapt: true,
+        rebuildFactor: (old, data) =>
+            old.devicePixelRatio !=
+            data.devicePixelRatio, 
         designSize: const Size(375, 812),
         builder: (context, child) => MaterialApp(
           // need to init the EasyLoading before using it in asyncPostAllData Func

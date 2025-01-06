@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:udemy_app/common/values/colors.dart';
-import 'package:udemy_app/common/values/constant.dart';
-import 'package:udemy_app/constants.dart';
+import 'package:udemy_app/common/values/assest_helper.dart';
 import 'package:udemy_app/pages/course/models/course_entity/course_item.dart';
 
 Widget courseGrid(CourseItem item) {
@@ -13,7 +12,7 @@ Widget courseGrid(CourseItem item) {
       borderRadius: BorderRadius.circular(15.w),
       image: DecorationImage(
         image: item.thumbnail != null
-            ? NetworkImage(AppConstants.SERVER_API_URL + item.thumbnail!)
+            ? NetworkImage(item.thumbnail!)
             : const AssetImage(
                 AssetsHelper.IC_IMAGE_1,
               ) as ImageProvider,

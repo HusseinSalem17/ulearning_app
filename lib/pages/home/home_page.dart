@@ -42,7 +42,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBarHome(userProfile.avatar!.toString()),
+      appBar: userProfile.avatar == null
+          ? null
+          : buildAppBarHome(userProfile.avatar!.toString()),
       body: RefreshIndicator(
         onRefresh: () async {
           return HomeController(context: context).init();
@@ -126,5 +128,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  
   }
 }

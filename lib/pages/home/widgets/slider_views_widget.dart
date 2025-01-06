@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:udemy_app/common/values/colors.dart';
-import 'package:udemy_app/constants.dart';
+import 'package:udemy_app/common/values/assest_helper.dart';
 import 'package:udemy_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:udemy_app/pages/home/bloc/home_page_events.dart';
 import 'package:udemy_app/pages/home/bloc/home_page_states.dart';

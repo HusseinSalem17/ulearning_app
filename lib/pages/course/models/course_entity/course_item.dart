@@ -4,7 +4,7 @@ import 'lesson_detail.dart';
 
 class CourseItem {
   int? id;
-  List<LessonDetail>? lessons;
+  List<LessonDetailModel>? lessons;
   List<Type>? type;
   Teacher? teacher;
   String? name;
@@ -40,7 +40,7 @@ class CourseItem {
   factory CourseItem.fromJson(Map<String, dynamic> json) => CourseItem(
         id: json['id'] as int?,
         lessons: (json['lessons'] as List<dynamic>?)
-            ?.map((e) => LessonDetail.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => LessonDetailModel.fromJson(e as Map<String, dynamic>))
             .toList(),
         type: (json['type'] as List<dynamic>?)
             ?.map((e) => Type.fromJson(e as Map<String, dynamic>))

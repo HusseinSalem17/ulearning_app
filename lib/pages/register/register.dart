@@ -9,7 +9,7 @@ import 'package:udemy_app/pages/register/bloc/register_events.dart';
 import 'package:udemy_app/pages/register/register_controller.dart';
 
 import '../../common/widgets/reusable_text.dart';
-import '../../constants.dart';
+import '../../common/values/assest_helper.dart';
 import 'bloc/register_states.dart';
 
 class Register extends StatelessWidget {

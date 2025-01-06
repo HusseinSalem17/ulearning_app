@@ -11,6 +11,6 @@ class TriggerCourseDetail extends CourseDetailEvents {
 }
 
 class TriggerLessonList extends CourseDetailEvents {
-  final List<LessonDetail> lessonItem;
+  final List<LessonDetailModel> lessonItem;
   const TriggerLessonList({required this.lessonItem}) : super();
 }

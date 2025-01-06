@@ -1,7 +1,7 @@
 // We need context for accessing bloc
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:udemy_app/constants.dart';
+import 'package:udemy_app/common/values/assest_helper.dart';
 
 Widget buildThiredPartyAuth(BuildContext context) {
   return Center(
